@@ -1,4 +1,9 @@
 node_modules/
 keys/
 .env
+<<<<<<< HEAD
 /postgres
+=======
+
+postgres/
+>>>>>>> 2f18611 (Finalizando API CA)
