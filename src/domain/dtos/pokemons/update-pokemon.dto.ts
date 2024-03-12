@@ -37,11 +37,11 @@ export class UpdatePokemonDto{
     }
     static create( props: {[key:string]:any}): [string?, UpdatePokemonDto?]{
 
-        const { id,nombre, tipo_primario,
-            tipo_secundario,descripcion,
-            altura,peso,habilidades_especiales,
+        const { id,nombre, tipoPrimario,
+            tipoSecundario,descripcion,
+            altura,peso,habilidadesEspeciales,
             evoluciones,hp,ataque,defensa,velocidad,
-            imagen_url} = props;
+            imagenUrl} = props;
         
         if(!id || isNaN(Number(id))){
             return ['id must be a valid number'];
@@ -49,10 +49,10 @@ export class UpdatePokemonDto{
 
         
         
-        return [undefined,new UpdatePokemonDto(id,nombre,tipo_primario
-            ,tipo_secundario,descripcion,
-            altura,peso,habilidades_especiales,
+        return [undefined,new UpdatePokemonDto(id,nombre,tipoPrimario
+            ,tipoSecundario,descripcion,
+            altura,peso,habilidadesEspeciales,
             evoluciones,hp,ataque,defensa,velocidad,
-            imagen_url)];
+            imagenUrl)];
     }
 }

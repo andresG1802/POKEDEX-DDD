@@ -5,9 +5,15 @@ export class PokemonDataSourceImpl implements PokemonDataSource{
     
     
     async create(createPokemonDto: CreatePokemonDto): Promise<PokemonEntity> {    
-        const pokemon = await prisma.Pokemon.create({
-            data:createPokemonDto!
-        });
+        
+        const pokemon = await prisma.pokemon.create(
+            {
+                data:createPokemonDto!,
+            }
+        );
+        // const pokemon = await prisma.Pokemon.create({
+        //     data:createPokemonDto!
+        // });
 
         return PokemonEntity.fromObject(pokemon);
     }
@@ -19,7 +25,7 @@ export class PokemonDataSourceImpl implements PokemonDataSource{
         return pokemons.map((pokemon: { [key: string]: any; })=>PokemonEntity.fromObject(pokemon));
     }
     async findById(id: number): Promise<PokemonEntity> {
-        const pokemon = await prisma.Pokemon.findFirst({
+        const pokemon = await prisma.pokemon.findFirst({
             where:{ id }
         });
 
