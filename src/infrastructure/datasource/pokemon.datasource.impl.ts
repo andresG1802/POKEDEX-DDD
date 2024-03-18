@@ -6,14 +6,10 @@ export class PokemonDataSourceImpl implements PokemonDataSource{
     
     async create(createPokemonDto: CreatePokemonDto): Promise<PokemonEntity> {    
         
-        const pokemon = await prisma.pokemon.create(
-            {
-                data:createPokemonDto!,
-            }
-        );
-        // const pokemon = await prisma.Pokemon.create({
-        //     data:createPokemonDto!
-        // });
+       
+        const pokemon = prisma.pokemon.create({
+            data:createPokemonDto!
+        });
 
         return PokemonEntity.fromObject(pokemon);
     }
@@ -22,7 +18,7 @@ export class PokemonDataSourceImpl implements PokemonDataSource{
         const pokemons = await prisma.pokemon.findMany();
         //Tenemos que hacer el mapeo
 
-        return pokemons.map((pokemon: { [key: string]: any; })=>PokemonEntity.fromObject(pokemon));
+        return pokemons.map(pokemon=>PokemonEntity.fromObject(pokemon));
     }
     async findById(id: number): Promise<PokemonEntity> {
         const pokemon = await prisma.pokemon.findFirst({
@@ -52,7 +48,6 @@ export class PokemonDataSourceImpl implements PokemonDataSource{
         const deleted = await prisma.pokemon.delete({
             where:{id}
         });
-
         return PokemonEntity.fromObject(deleted);
     }
     
